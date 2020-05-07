@@ -165,7 +165,6 @@ function display(linkedList) {
     arr.push(current.value);
     current = current.next;
   }
-  console.log(arr);
   return arr;
 }
 
@@ -238,9 +237,63 @@ function reverseList(lst) { // O(n)
   return lst;
 }
   
-function main() {
-  const SLL = new LinkedList();
+function thirdFromEnd(lst) {
+  // if(lst.head === null) {
+  //   return;
+  // }
+  // let newLst = reverseList(lst);
+  let item =  display(lst);
 
+  let third = item[item.length - 3];
+
+  if (third === undefined) {
+    console.log('3rd item not found from lst');
+    return;
+  }
+  console.log(third);
+  return third;
+}
+
+function findMiddle(lst) {
+  let slow_ptr = lst.head; 
+  let fast_ptr = lst.head; 
+  if (lst.head !== null) 
+  { 
+    while (fast_ptr !== null && fast_ptr.next !== null) 
+    { 
+      fast_ptr = fast_ptr.next.next; 
+      slow_ptr = slow_ptr.next; 
+    } 
+    console.log('The middle element is [' + slow_ptr.value + '] \n'); 
+  } 
+}
+
+function cycleList(lst) {
+  if(!this.head) {
+    return null;
+  }
+  let slow = lst.head; 
+  let fast = lst.head; 
+  
+  while(slow !== null && fast !== null && fast.next !== null) { 
+    fast = fast.next.next; 
+    slow = slow.next; 
+    if(slow === fast)
+      return 'This linked list has a cycle';
+  }
+  return 'This linked list does not have a cycle';   
+}
+
+function main() {
+  
+  const CycleList = new LinkedList();
+  CycleList.insertFirst('First');
+  CycleList.insertLast('Second');
+  CycleList.insertLast('Third');
+  CycleList.insertLast('Fourth');
+  CycleList.find('Fourth').next = CycleList.find('Second');
+  
+  const SLL = new LinkedList();
   SLL.insertFirst('Apollo');
   SLL.insertLast('Boomer');
   SLL.insertLast('Helo');
@@ -262,9 +315,14 @@ function main() {
 
   //WhatDoesThisProgramDo(SLL);
 
-  display(reverseList(SLL));
-
+  //display(reverseList(SLL));
+  //thirdFromEnd(SLL);
+  //findMiddle(SLL);
+  console.log(cycleList(CycleList));
+  
 
 }
+
+
 
 main();
