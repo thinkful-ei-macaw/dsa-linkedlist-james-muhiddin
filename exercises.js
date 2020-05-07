@@ -22,7 +22,7 @@ class LinkedList {
       let tempNode = this.head;
       while (tempNode.next !== null) {
         tempNode = tempNode.next;
-      }                         //idx        //item
+      }                        
       tempNode.next = new _Node(item, null);
     }
   }
@@ -77,36 +77,36 @@ class LinkedList {
     previousNode.next = currNode.next;
   }
 
-  insertAfter(nodeExist, itemToInsert) {
-    //find the node
-    let foundNode = this.find(nodeExist);
+  // insertAfter(nodeExist, itemToInsert) {
+  //   //find the node
+  //   let foundNode = this.find(nodeExist);
 
-    if (foundNode === null) {
-      console.log('not found');
-      return;
-    }
+  //   if (foundNode === null) {
+  //     console.log('not found');
+  //     return;
+  //   }
 
-    let currNode = this.head;
+  //   let currNode = this.head;
 
-    let previousNode = this.head;
+  //   let previousNode = this.head;
 
-    while ((currNode !== null) && (currNode.value !== foundNode.value)) {
-      previousNode = currNode;
-      currNode = currNode.next;
-    }
+  //   while ((currNode !== null) && (currNode.value !== foundNode.value)) {
+  //     previousNode = currNode;
+  //     currNode = currNode.next;
+  //   }
 
-    let next = currNode.next;
+  //   let next = currNode.next;
 
-    let nextnext = next.next;
+  //   let nextnext = next.next;
 
-    currNode.next = new _Node(itemToInsert, nextnext);
+  //   currNode.next = new _Node(itemToInsert, nextnext);
 
-    return currNode;
-  }
+  //   return currNode;
+  // }
 
 
   insertBefore(itemToInsert, itemBefore) {
-    if (null === this.head || itemBefore === this.head.value) {
+    if (this.head === null || this.head.value === itemBefore) {
       this.insertFirst(itemToInsert);
     } else {
 
@@ -124,10 +124,63 @@ class LinkedList {
       }
     }
   }
-}
+
+  insertAfter(itemBefore, itemToInsert) { 
+    if (this.head === null) 
+      this.insertFirst(itemToInsert);
+    else {
+  
+      let new_node = new _Node(itemToInsert); 
+      let prev_node = this.find(itemBefore);  
+
+      new_node.next = prev_node.next; 
+      prev_node.next = new_node; 
+    } 
+
+  }
+
+
+  insertAt(itemToInsert, position) {
+    //create new node.
+    let node = new _Node();
+    node.value = itemToInsert;
+    node.next = null;
+
+    if (this.head === null) {
+      //if head is null and position is zero then exit.
+      if (position !== 0) {
+        return;
+      } else { //node set to the head.
+        this.head = node;
+      }
+    }
+
+    if (this.head !== null && position === 0) {
+      node.next = this.head;
+      this.head = node;
+      return;
+    }
+
+    let current = this.head;
+    let previous = null;
+
+    let i = 0;
+
+    while (i < position) {
+      previous = current;
+      current = current.next;
+      if (current === null) {
+        break;
+      }
+      i++;
+    }
+
+    node.next = current;
+    previous.next = node;
+  }
   
 
-
+}
 
 
   
@@ -140,10 +193,13 @@ function main() {
   SLL.insertLast('Husker');
   SLL.insertLast('Starbuck');
   SLL.insertLast('Tauhida');
-  //   SLL.remove('squirrel'); // Item not found
+  // SLL.insertBefore('Athena', 'Boomer');
+  // SLL.insertAfter('Helo', 'Hotdog');
+  // SLL.insertAt('Kat', 3);
+  SLL.remove('Tauhida');
 
-  ///console.log(SLL.find('Boomer'));
-  console.log(SLL.insertBefore('Athena', 'Boomer'));
+ 
+  
   console.log(SLL);
 
   //Appollo - Boomer - Athena - Helo - null
