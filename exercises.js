@@ -168,6 +168,41 @@ function display(linkedList) {
   console.log(arr);
   return arr;
 }
+
+function size(linkedList) {
+  console.log('Size:', display(linkedList).length);
+}
+
+function isEmpty(linkedList) {
+  return linkedList.head === null;
+}
+
+//Boomer
+function findPrevious(linkedList, item) {
+  if(linkedList.head === null || linkedList.head.next === null) {
+    return;
+  }
+  let previousNode = linkedList.head;
+  let currentNode = linkedList.head;
+  while(currentNode.value !== item) {
+    previousNode = currentNode;
+    currentNode = currentNode.next;
+  }
+  return previousNode;
+}
+
+function findLast(linkedList) {
+  if(linkedList.head === null || linkedList.head.next === null) {
+    return linkedList.head;
+  }
+  let previousNode = linkedList.head;
+  let currentNode = linkedList.head;
+  while(currentNode !== null) {
+    previousNode = currentNode;
+    currentNode = currentNode.next;
+  }
+  return previousNode;
+}
   
 function main() {
   const SLL = new LinkedList();
@@ -183,13 +218,13 @@ function main() {
   // SLL.insertAt('Kat', 3);
   // SLL.remove('Tauhida');
 
- 
   
-  display(SLL);
-
-  //Appollo - Boomer - Athena - Helo - null
-  //After - Item - Before
-
+  
+  // display(SLL);
+  // size(SLL);
+  // console.log(isEmpty(SLL));
+  // console.log(findPrevious(SLL, 'Starbuck'));
+  console.log(findLast(SLL));
   
 }
 
