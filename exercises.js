@@ -269,7 +269,7 @@ function findMiddle(lst) {
 }
 
 function cycleList(lst) {
-  if(!this.head) {
+  if(!lst.head) {
     return null;
   }
   let slow = lst.head; 
@@ -318,7 +318,8 @@ function main() {
   //display(reverseList(SLL));
   //thirdFromEnd(SLL);
   //findMiddle(SLL);
-  console.log(cycleList(CycleList));
+  console.log(cycleList(SLL));
+ 
   
 
 }
