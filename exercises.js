@@ -284,6 +284,8 @@ function cycleList(lst) {
   return 'This linked list does not have a cycle';   
 }
 
+
+
 function main() {
   
   const CycleList = new LinkedList();
