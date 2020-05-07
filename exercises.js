@@ -203,6 +203,40 @@ function findLast(linkedList) {
   }
   return previousNode;
 }
+
+function WhatDoesThisProgramDo(lst) {  // O(n^2)
+  let current = lst.head;
+  while (current !== null) {
+    let newNode = current;
+    while (newNode.next !== null) {
+      if (newNode.next.value === current.value) {
+        newNode.next = newNode.next.next;
+      }
+      else {
+        newNode = newNode.next;
+      }
+    }
+    current = current.next;
+    console.log(current);
+  }
+  
+}
+// ex5 
+function reverseList(lst) { // O(n) 
+  if(lst.head === null) {
+    return;
+  }
+  let pointer = lst.head;
+  let prev = null, current = null;
+  while(pointer) {
+    current = pointer;
+    pointer = pointer.next; //
+    current.next = prev; 
+    prev = current;
+  }
+  lst.head = current;
+  return lst;
+}
   
 function main() {
   const SLL = new LinkedList();
@@ -224,8 +258,13 @@ function main() {
   // size(SLL);
   // console.log(isEmpty(SLL));
   // console.log(findPrevious(SLL, 'Starbuck'));
-  console.log(findLast(SLL));
-  
+  //console.log(findLast(SLL));
+
+  //WhatDoesThisProgramDo(SLL);
+
+  display(reverseList(SLL));
+
+
 }
 
 main();
