@@ -77,34 +77,6 @@ class LinkedList {
     previousNode.next = currNode.next;
   }
 
-  // insertAfter(nodeExist, itemToInsert) {
-  //   //find the node
-  //   let foundNode = this.find(nodeExist);
-
-  //   if (foundNode === null) {
-  //     console.log('not found');
-  //     return;
-  //   }
-
-  //   let currNode = this.head;
-
-  //   let previousNode = this.head;
-
-  //   while ((currNode !== null) && (currNode.value !== foundNode.value)) {
-  //     previousNode = currNode;
-  //     currNode = currNode.next;
-  //   }
-
-  //   let next = currNode.next;
-
-  //   let nextnext = next.next;
-
-  //   currNode.next = new _Node(itemToInsert, nextnext);
-
-  //   return currNode;
-  // }
-
-
   insertBefore(itemToInsert, itemBefore) {
     if (this.head === null || this.head.value === itemBefore) {
       this.insertFirst(itemToInsert);
@@ -118,7 +90,7 @@ class LinkedList {
         currNode = currNode.next;
       }
       if (null !== currNode) {
-        previousNode.next = new _Node(itemToInsert, itemBefore);
+        previousNode.next = new _Node(itemToInsert, currNode);
       } else {
         this.insertLast(itemToInsert);
       }
@@ -182,7 +154,20 @@ class LinkedList {
 
 }
 
-
+function display(linkedList) {
+  let arr = [];
+  if(linkedList.head.value === null) {
+    return [];
+  }
+  //while 
+  let current = linkedList.head;
+  while(current !== null) {
+    arr.push(current.value);
+    current = current.next;
+  }
+  console.log(arr);
+  return arr;
+}
   
 function main() {
   const SLL = new LinkedList();
@@ -193,14 +178,14 @@ function main() {
   SLL.insertLast('Husker');
   SLL.insertLast('Starbuck');
   SLL.insertLast('Tauhida');
-  // SLL.insertBefore('Athena', 'Boomer');
+  SLL.insertBefore('Athena', 'Boomer');
   // SLL.insertAfter('Helo', 'Hotdog');
   // SLL.insertAt('Kat', 3);
-  SLL.remove('Tauhida');
+  // SLL.remove('Tauhida');
 
  
   
-  console.log(SLL);
+  display(SLL);
 
   //Appollo - Boomer - Athena - Helo - null
   //After - Item - Before
